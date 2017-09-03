@@ -1,4 +1,5 @@
 import Gamer from "./Gamer";
+import Token from "./Token";
 
 export default class Board {
     constructor() {
@@ -19,7 +20,7 @@ export default class Board {
     }
 
     _gamersOnRow(height) {
-        return this.state[height].reduce((sum, element) => element instanceof Gamer ? ++sum : sum, 0);
+        return this.state[height].reduce((sum, element) => element instanceof Token ? ++sum : sum, 0);
     }
 }
 

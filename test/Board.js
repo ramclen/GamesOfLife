@@ -20,7 +20,7 @@ describe("A board", () => {
     });
 
     it("should be possible move a token of position", function() {
-        board
+
     })
 
 });
