@@ -30,6 +30,9 @@ describe("A board", () => {
         expect(()=>board.move(token, [0, 1])).to.throw()
     })
 
-
+    it("should be able to get all tokens", function() {
+        expect(board.getTokens().length).to.equal(6)
+        expect(board.getTokens()[2]).to.instanceOf(Token)
+    })
 
 });

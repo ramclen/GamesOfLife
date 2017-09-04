@@ -1,6 +1,6 @@
 import Gamer from "./Gamer";
 import Token from "./Token";
-import {findKey} from "lodash/object";
+import {findKey, values} from "lodash/object";
 
 export default class Board {
     constructor() {
@@ -39,10 +39,14 @@ export default class Board {
             return (element.coordinates[0] == x && element.coordinates[1] == y);
         })
         if(!key) {
-            console.error("Key not found on position " + x + ":" + y);
+            //console.error("Key not found on position " + x + ":" + y);
             return;
         }
         return this.state[key].token;
+    }
+
+    getTokens(){
+        return values(this.state).map(value => value.token);
     }
 
     toString(){
@@ -50,7 +54,8 @@ export default class Board {
         for(let i=0; i<this.height; i++){
             string+="|"
             for(let j=0; j<this.width; j++){
-                string += this.getPosition([i, j])?'#':' ';
+                let token = this.getPosition([i, j]);
+                string += (token && (token.status==Token.status.live))?'#':' ';
             }
             string += "| \n";
         }
