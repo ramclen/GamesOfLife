@@ -4,14 +4,20 @@ import Board from "./Board";
 
 export default class Gamer {
     constructor(){
-        this.nextTurn = [];
+        this.decision = [];
     }
 
     yourTurn(){
-        if(this.nextTurn.length!==0)
-            this.nextTurn.forEach(action => action());
+        if(this.decision.length!==0){
+            this.decision.forEach(action => action());
+            this.decision = [];
+        }
+
+    }
+
+    think(){
         let tokenStatus = this.rules.giveTokenStatus(this.token, this.board);
-        this.nextTurn.push(() => this.token.status = tokenStatus);
+        this.decision.push(() => this.token.status = tokenStatus);
     }
 
     setRules(rules:Rules) {

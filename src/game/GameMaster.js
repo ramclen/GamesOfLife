@@ -16,7 +16,10 @@ export default class GameMaster {
 
     aTurn() {
         this.gamers.forEach(gamer => {
-            this.takeTurn(gamer);
+            gamer.think();
+        })
+        this.gamers.forEach(gamer => {
+            gamer.yourTurn();
         })
         this.checkEnd(this.game);
         console.log(this.game.board.toString());
@@ -26,10 +29,6 @@ export default class GameMaster {
         this._readRules();
         this._distributeTokens();
         this.game.start();
-    }
-
-    takeTurn(gamer) {
-        gamer.yourTurn();
     }
 
     _readRules() {
