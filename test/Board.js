@@ -21,13 +21,13 @@ describe("A board", () => {
     });
 
     it("should be possible move a token of position", function () {
-        board.move(token, [1, 3]);
-        var _token = board.getPosition([1, 3]);
+        board.move(token, [1, 2]);
+        var _token = board.getPosition([1, 2]);
         assert.equal(_token.id, token.id)
     })
 
     it("should not be possible move a token of occupied position", function () {
-        expect(()=>board.move(token, [1, 1])).to.throw()
+        expect(()=>board.move(token, [0, 1])).to.throw()
     })
 
 

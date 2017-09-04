@@ -1,5 +1,6 @@
 import Gamer from "./Gamer";
 import Token from "./Token";
+import {findKey} from "lodash/object";
 
 export default class Board {
     constructor() {
@@ -8,13 +9,17 @@ export default class Board {
         this.width = 0;
     }
 
+    getTokenCoordinates(token:Token){
+        return this.state[token.id].coordinates;
+    }
+
     addRow(rowState){
-        this.height++;
-        this.width = this.width < rowState.length? rowState.length : this.width ;
         for(let i=0; i<rowState.length; i++){
             if(rowState[i])
                 this.state[rowState[i].id] = {token:rowState[i], coordinates:[this.height, i]};
         }
+        this.width = this.width < rowState.length? rowState.length : this.width ;
+        this.height++;
         return this;
     }
 
@@ -30,10 +35,14 @@ export default class Board {
     }
 
     getPosition([x, y]){
-        return Object.keys(this.state).map((key)=>{
-            if(this.state[key].coordinates[0] == x && this.state[key].coordinates[1] == y)
-                return this.state[key].token;
-        })[0]
+        var key = findKey(this.state, element=>{
+            return (element.coordinates[0] == x && element.coordinates[1] == y);
+        })
+        if(!key) {
+            console.error("Key not found on position " + x + ":" + y);
+            return;
+        }
+        return this.state[key].token;
     }
 
     toString(){
