@@ -8,7 +8,7 @@ export default class Rules {
     }
 
     giveTokenStatus(token:Token, board:Board):Token.status{
-        var tokens = this._getTokensAround(board, token);
+        var tokens = this._liveTokens(this._getTokensAround(board, token));
         if(token.status === Token.status.live)
             return this._livesRules(tokens);
         else
@@ -29,19 +29,18 @@ export default class Rules {
     }
 
     _overpopulation(tokens) {
-        tokens.filter(token => token.status=== Token.status.live).length > 3;
+        tokens.length > 3;
     }
 
     _underpopulation(tokens) {
-        return tokens.filter(token => token.status=== Token.status.live).length < 2;
+        return tokens.length < 2;
     }
 
     _getTokensAround(board, token) {
         var coordinates = this._getAroundPositions(board.getTokenCoordinates(token))
         var tokens = coordinates.map(coordinates => {
             return board.getPosition(coordinates)
-        })
-        tokens = tokens.filter(element => {
+        }).filter(element => {
             return element;
         })
         return tokens;
@@ -56,5 +55,9 @@ export default class Rules {
             }
         }
         return positions;
+    }
+
+    _liveTokens(tokens) {
+        return tokens.filter(token => token.status == Token.status.live);
     }
 }
