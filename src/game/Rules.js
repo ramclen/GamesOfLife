@@ -8,34 +8,11 @@ export default class Rules {
     }
 
     giveTokenStatus(token:Token, board:Board):Token.status{
-        var tokens = this.getTokensAround(board, token);
+        var tokens = this._getTokensAround(board, token);
         if(token.status === Token.status.live)
-            return this.livesRules(tokens);
+            return this._livesRules(tokens);
         else
             return tokens.length == 3 ? Token.status.live : Token.status.death;
-    }
-
-    livesRules(tokens) {
-        return (this.underpopulation(tokens) || this.overpopulation(tokens)) ? Token.status.death : Token.status.live;
-    }
-
-    overpopulation(tokens) {
-        return tokens.length > 3;
-    }
-
-    underpopulation(tokens) {
-        return tokens.length < 2;
-    }
-
-    getTokensAround(board, token) {
-        var coordinates = this.getAroundPositions(board.getTokenCoordinates(token))
-        var tokens = coordinates.map(coordinates => {
-            return board.getPosition(coordinates)
-        })
-        tokens = tokens.filter(element => {
-            return element;
-        })
-        return tokens;
     }
 
     giveMovements(token, board){
@@ -46,7 +23,31 @@ export default class Rules {
 
     }
 
-    getAroundPositions([x, y]){
+
+    _livesRules(tokens) {
+        return (this._underpopulation(tokens) || this._overpopulation(tokens)) ? Token.status.death : Token.status.live;
+    }
+
+    _overpopulation(tokens) {
+        tokens.filter(token => token.status=== Token.status.live).length > 3;
+    }
+
+    _underpopulation(tokens) {
+        return tokens.filter(token => token.status=== Token.status.live).length < 2;
+    }
+
+    _getTokensAround(board, token) {
+        var coordinates = this._getAroundPositions(board.getTokenCoordinates(token))
+        var tokens = coordinates.map(coordinates => {
+            return board.getPosition(coordinates)
+        })
+        tokens = tokens.filter(element => {
+            return element;
+        })
+        return tokens;
+    }
+
+    _getAroundPositions([x, y]){
         let positions = [];
         for(let i=-1;i<2; i++) {
             for(let j=-1; j<2; j++) {
