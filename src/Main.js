@@ -19,8 +19,8 @@ class Main{
             .addRow([undefined, gamers[2].token, undefined, undefined, undefined, undefined])
             .addRow([gamers[1].token, gamers[3].token, gamers[0].token, undefined, undefined, undefined])
             .addRow([undefined, gamers[4].token, undefined, undefined, undefined, undefined])
-        var master = new GameMaster(new Game(board, new Rules()), gamers);
-        master.run();
+
+        new GameMaster(new Game(board, new Rules()), gamers).run();
     }
 }
 

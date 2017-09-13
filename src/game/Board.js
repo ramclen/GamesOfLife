@@ -55,7 +55,7 @@ export default class Board {
             string+="|"
             for(let j=0; j<this.width; j++){
                 let token = this.getPosition([i, j]);
-                string += (token && (token.status==Token.status.live))?'#':' ';
+                string += (token? token.toString() : ' ');
             }
             string += "| \n";
         }

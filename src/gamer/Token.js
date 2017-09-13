@@ -6,6 +6,10 @@
         this.status = status
     }
 
+    toString(){
+        return (this.status == Token.status.live) ? '#' : ' ';
+    }
+
 }
 
 Token.status = {
