@@ -1,6 +1,8 @@
 import Mind from "../src/mind/Mind";
 import {expect} from "chai";
 import Decision from "../src/mind/Decision";
+import PsychoLifeModule from "../src/psyco/PsychoLifeModule";
+import PsychoMovementModule from "../src/psyco/PsychoMovementModule";
 
 describe("Mind", function () {
     var mind: Mind;
@@ -14,9 +16,9 @@ describe("Mind", function () {
     })
 
     it("could be injected a new psyco module", function () {
-        mind.addPsyco(new LifeModule())
-            .addPsyco(new MovementModule());
-        expect(mind.getPsycos().length).to.equal(2)
+        mind.addPsycho(new PsychoLifeModule())
+            .addPsycho(new PsychoMovementModule());
+        expect(mind.getPsychos().length).to.equal(2)
     })
 });
 

@@ -6,10 +6,13 @@ import Gamer from "./gamer/Gamer";
 import Game from "./game/Game";
 import Mind from "./mind/Mind";
 import PsychoLifeModule from "./psyco/PsychoLifeModule";
+import PsychoMovementModule from "./psyco/PsychoMovementModule";
 
 class Main{
     static main(){
-        var lifeMind = new Mind().addPsycho(new PsychoLifeModule());
+        var lifeMind = new Mind()
+                        .addPsycho(new PsychoLifeModule())
+                        .addPsycho(new PsychoMovementModule());
 
         var gamers = [
             new Gamer(lifeMind, new Token(Token.status.death)),

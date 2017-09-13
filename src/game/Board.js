@@ -28,6 +28,9 @@ export default class Board {
     }
 
     move(token, [x, y]){
+        if(this._isOutBorder([x, y], this.getTokenCoordinates(token))){
+            throw new Error("Out of borders");
+        }
         if(!this.getPosition([x, y]))
             this.state[token.id] = {token, coordinates: [x, y]};
         else
@@ -61,5 +64,8 @@ export default class Board {
         }
         return string;
     }
-}
 
+    _isOutBorder([x, y]) {
+        return this.width <= y || this.height <= x;
+    }
+}

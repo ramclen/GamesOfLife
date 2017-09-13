@@ -7,7 +7,7 @@
     }
 
     toString(){
-        return (this.status == Token.status.live) ? '#' : ' ';
+        return (this.status == Token.status.live) ? '#' : 'T';
     }
 
 }
