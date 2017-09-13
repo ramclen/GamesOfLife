@@ -1,5 +1,5 @@
-import Gamer from "./Gamer";
-import Token from "./Token";
+import Gamer from "../gamer/Gamer";
+import Token from "../gamer/Token";
 import {findKey, values} from "lodash/object";
 
 export default class Board {

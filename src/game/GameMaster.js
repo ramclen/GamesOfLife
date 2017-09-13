@@ -9,12 +9,12 @@ export default class GameMaster {
     run(){
         this.startTheGame();
         setInterval(() => {
-            this.aTurn();
+            console.log(this.aTurn().next().value);
         }, 1000);
 
     }
 
-    aTurn() {
+    * aTurn() {
         this.gamers.forEach(gamer => {
             gamer.think();
         })
@@ -22,12 +22,11 @@ export default class GameMaster {
             gamer.yourTurn();
         })
         this.checkEnd(this.game);
-        console.log(this.game.board.toString());
+        yield this.game.board.toString();
     }
 
     startTheGame() {
         this._readRules();
-        this._distributeTokens();
         this.game.start();
     }
 
@@ -38,11 +37,6 @@ export default class GameMaster {
         })
     }
 
-    _distributeTokens() {
-        this.game.board.getTokens().forEach((token, index)=>{
-            this.gamers[index].bringToken(token);
-        })
-    }
 
     checkEnd(game) {
         //TODO

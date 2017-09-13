@@ -1,5 +1,5 @@
 import Board from "./Board";
-import Token from "./Token";
+import Token from "../gamer/Token";
 
 export default class Rules {
 

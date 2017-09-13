@@ -5,7 +5,7 @@ import Rules from "../src/game/Rules";
 import Board from "../src/game/Board";
 
 describe("A Game", () => {
-    var game;
+    var game: Game;
     beforeEach(function () {
         game = new Game(new Board(3, 3), new Rules());
     });

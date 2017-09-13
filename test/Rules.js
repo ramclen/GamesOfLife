@@ -1,7 +1,7 @@
 import assert from 'assert';
 import {beforeEach} from "mocha";
 import Board from "../src/game/Board";
-import Token from "../src/game/Token";
+import Token from "../src/gamer/Token";
 import Rules from "../src/game/Rules";
 import {expect} from "chai";
 

@@ -1,7 +1,7 @@
 import assert from "assert";
 import Board from "../src/game/Board";
-import Gamer from "../src/game/Gamer";
-import Token from "../src/game/Token";
+import Gamer from "../src/gamer/Gamer";
+import Token from "../src/gamer/Token";
 import {expect} from "chai";
 
 describe("A board", () => {
