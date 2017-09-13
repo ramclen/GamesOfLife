@@ -5,16 +5,20 @@ import Rules from "./game/Rules";
 import Gamer from "./gamer/Gamer";
 import Game from "./game/Game";
 import Mind from "./mind/Mind";
+import PsychoLifeModule from "./psyco/PsychoLifeModule";
 
 class Main{
     static main(){
+        var lifeMind = new Mind().addPsycho(new PsychoLifeModule());
+
         var gamers = [
-            new Gamer(new Mind(), new Token(Token.status.death)),
-            new Gamer(new Mind(), new Token(Token.status.death)),
-            new Gamer(new Mind(), new Token()),
-            new Gamer(new Mind(), new Token()),
-            new Gamer(new Mind(), new Token()),
+            new Gamer(lifeMind, new Token(Token.status.death)),
+            new Gamer(lifeMind, new Token(Token.status.death)),
+            new Gamer(lifeMind, new Token()),
+            new Gamer(lifeMind, new Token()),
+            new Gamer(lifeMind, new Token()),
         ];
+
         var board = new Board()
             .addRow([undefined, gamers[2].token, undefined, undefined, undefined, undefined])
             .addRow([gamers[1].token, gamers[3].token, gamers[0].token, undefined, undefined, undefined])

@@ -2,15 +2,32 @@ import Decision from "./Decision";
 import Token from "../gamer/Token";
 import Board from "../game/Board";
 import Rules from "../game/Rules";
+import PsychoModule from "../psyco/PsychoModule";
 
 export default class Mind {
+    modules: Array<PsychoModule>;
+
+    constructor(){
+        this.modules = [];
+    }
 
     learnRules(rules:Rules){
         this.rules = rules;
     }
 
-    takeDecision(board:Board, token:Token):Decision{
-        let tokenStatus = this.rules.giveTokenStatus(token, board);
-        return new Decision( ()=> token.status = tokenStatus );
+    takeDecisions(board:Board, token:Token):Array<Decision>{
+        if(!this.rules && this.modules.length==0) return new Decision(()=>{});
+        return this.modules.map(module=>{
+            return module.run(board, this.rules, token);
+        })
+    }
+
+    addPsycho(psycho:PsychoModule){
+        this.modules.push(psycho);
+        return this;
+    }
+
+    getPsychos():Array<PsychoModule>{
+        return this.modules;
     }
 }

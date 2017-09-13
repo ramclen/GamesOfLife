@@ -8,23 +8,20 @@ export default class Gamer {
 
     constructor(mind:Mind, token:Token){
         this.mind = mind;
-        this.token = token;
+        this.token = token
+        this.decisions = [];
     }
 
     yourTurn(){
-        this.decision.run();
+        this.decisions.forEach(decision => decision.run());
     }
 
     think(){
-        this.decision = this.mind.takeDecision(this.board, this.token);
+        this.decisions = this.mind.takeDecisions(this.board, this.token);
     }
 
     setRules(rules:Rules) {
         this.mind.learnRules(rules);
-    }
-
-    bringToken(token:Token){
-        this.token = token;
     }
 
     showBoard(board:Board){
