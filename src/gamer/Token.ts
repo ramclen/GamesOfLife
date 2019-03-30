@@ -10,7 +10,7 @@
     }
 
     public toString(): string {
-        return (this.status === TOKEN_STATUS.live) ? '#' : 'T';
+        return (this.status === TOKEN_STATUS.live) ? '#' : '†';
     }
 
 }
