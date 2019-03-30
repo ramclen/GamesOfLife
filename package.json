@@ -2,7 +2,7 @@
   "name": "LifeGames",
   "version": "0.0.1",
   "scripts": {
-    "test": "mocha --require babel-polyfill --compilers js:babel-register --recursive .\\test ",
+    "test": "mocha --require ts-node/register --compilers js:babel-register --recursive .\\test ",
     "run": "babel-node ./src/Main.js"
   },
   "dependencies": {
@@ -20,6 +20,10 @@
     ]
   },
   "devDependencies": {
-    "babel-preset-flow": "^6.23.0"
+    "@babel/core": "^7.3.4",
+    "@babel/node": "^7.2.2",
+    "@types/mocha": "^5.2.6",
+    "babel-preset-flow": "^6.23.0",
+    "ts-node": "^5.0.0"
   }
 }
