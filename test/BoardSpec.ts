@@ -36,8 +36,23 @@ describe('A board', () => {
         expect(board.getTokens()[2]).to.instanceOf(Token);
     });
 
-    it('should not pass the borders', () => {
+    it('should not pass the biggers borders', () => {
         const coor = [board.width, board.height];
-        expect(board.move.bind(token2, coor)).to.throw();
+        try {
+            board.move(token2, coor);
+            expect(true).to.be.equal(false);
+        } catch (e) {
+            expect(e.message).to.be.equal('Out of borders');
+        }
+    });
+
+    it('should not pass the minimums borders', () => {
+        const coor = [-1, -1];
+        try {
+            board.move(token2, coor);
+            expect(true).to.be.equal(false);
+        } catch (e) {
+            expect(e.message).to.be.equal('Out of borders');
+        }
     });
 });
