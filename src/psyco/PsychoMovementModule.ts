@@ -10,11 +10,18 @@ export default class PsychoMovementModule extends PsychoModule {
         return new Decision(() => {
             const [x, y] = board.getTokenCoordinates(token);
             try {
-                board.move(token, [x, y + 1]);
+                board.move(token, [this.randomIncrease(x), this.randomIncrease(y)]);
             } catch (e) {
-
+                // console.log(e);
             }
-
         });
+    }
+
+    private randomIncrease(coordinate: number): number {
+        if ((Math.random()) <= 0.5 ) {
+            return coordinate + Math.round((Math.random()));
+        } else {
+            return coordinate - Math.round((Math.random()));
+        }
     }
 }
