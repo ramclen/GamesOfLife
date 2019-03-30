@@ -27,7 +27,7 @@ class Game {
     }
 }
 
-enum GAME_STATUS {
+export enum GAME_STATUS {
     started = 'started',
     created = 'created',
     finished = 'finished'

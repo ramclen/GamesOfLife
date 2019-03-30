@@ -54,7 +54,7 @@ export default class Board {
         return this.state[key].token;
     }
 
-    getTokens() {
+    getTokens(): Token [] {
         return values(this.state).map(value => value.token);
     }
 
