@@ -19,6 +19,7 @@ export default class GameMaster {
     }
 
     * aTurn(): Iterator<string> {
+        const status = this.game.board.toString();
         this.players.forEach(gamer => {
             gamer.think();
         });
@@ -26,7 +27,7 @@ export default class GameMaster {
             gamer.yourTurn();
         });
         this.checkEnd(this.game);
-        yield this.game.board.toString();
+        yield status;
     }
 
     startTheGame(): void {
