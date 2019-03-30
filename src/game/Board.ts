@@ -72,6 +72,6 @@ export default class Board {
     }
 
     private isOutBorder([x, y]: any[]): boolean {
-        return this.width <= y || this.height <= x;
+        return (this.width <= y || this.height <= x) || (0 > y || 0 > x);
     }
 }

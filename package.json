@@ -2,8 +2,9 @@
   "name": "LifeGames",
   "version": "0.0.1",
   "scripts": {
-    "test": "mocha --require ts-node/register --compilers js:babel-register --recursive .\\test ",
-    "run": "babel-node ./src/Main.js"
+    "test-watch": "mocha --watch-extensions ts --watch --recursive --require ts-node/register ./test/*",
+    "test": "mocha --require ts-node/register ./test/*",
+    "run": "ts-node ./src/Main.ts"
   },
   "dependencies": {
     "babel-core": "^6.25.0",
