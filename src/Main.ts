@@ -7,11 +7,13 @@ import Game from './game/Game';
 import Mind from './mind/Mind';
 import PsychoLifeModule from './psyco/PsychoLifeModule';
 import PsychoMovementModule from './psyco/PsychoMovementModule';
+import { PsychoReproductionModule } from './psyco/PsychoReproductionModule';
 
 class Main {
     static main(): void {
         const lifeMind = new Mind()
                         .addPsycho(new PsychoLifeModule())
+                        .addPsycho(new PsychoReproductionModule())
                         .addPsycho(new PsychoMovementModule());
 
         const gamers = [

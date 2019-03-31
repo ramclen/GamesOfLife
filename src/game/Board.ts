@@ -17,6 +17,17 @@ export default class Board {
         return this.state[token.id].coordinates;
     }
 
+    setNewToken(token: Token, coordinates: number[]): void {
+        if (this.isOutBorder(coordinates)) {
+            throw new Error('Out of borders');
+        }
+        if (!this.getPosition(coordinates)) {
+            this.state[token.id] = {token, coordinates};
+        } else {
+            throw new Error('Position already occupied');
+        }
+    }
+
     addRow(rowState: Token[]): Board {
         for (let i = 0; i < rowState.length; i++) {
             if (rowState[i]) {

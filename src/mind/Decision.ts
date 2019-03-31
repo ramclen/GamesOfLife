@@ -1,3 +1,5 @@
+import { DecisionEvent } from './DecisionEvent';
+
 export default class Decision {
     actions: Function[];
 
@@ -10,10 +12,12 @@ export default class Decision {
         return this;
     }
 
-    run(): void {
+    run(): DecisionEvent[] {
         if (this.actions.length !== 0) {
-            this.actions.forEach(action => action());
+            const events: DecisionEvent[] = this.actions.map(action => action());
             this.actions = [];
+            return events;
         }
+        return undefined;
     }
 }
